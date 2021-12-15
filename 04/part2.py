@@ -17,7 +17,6 @@ print(bingo_board_amount)
 bingo_boards = []
 for starting_point in range(2, bingo_board_amount, 6):
     bingo_boards.append([row.split() for row in bingo_data[starting_point:starting_point+5]])
-# ≈
 
 print('bingo_boards')
 print(bingo_boards)
@@ -43,9 +42,6 @@ def did_someone_win(all_boards):
                     return all_boards[0]
                 should_del = True
 
-                # del bingo_boards[bingo_index]
-                # return None
-
         # check columns by rotating list of lists
         rotated_list = [list(row) for row in zip(*reversed(bingo_board))]
 
@@ -54,9 +50,8 @@ def did_someone_win(all_boards):
                 if len(all_boards) == 1:
                     return all_boards[0]
                 should_del = True
-                # del bingo_boards[bingo_index]
-                # return None
 
+        # to prevent deleting during iteration
         if should_del:
             del bingo_boards[bingo_index]
 
@@ -71,8 +66,7 @@ for money_ball in chosen_numbers:
 
     if winning_board:
 
-        print('Winner!')
-        print(winning_board)
+        print('Loser!')
         sum_of_unmarked = sum([int(item) for sublist in winning_board for item in sublist if item != 'x'])
         sum_times_moneyball = sum_of_unmarked * int(money_ball)
         print(sum_of_unmarked, '*', money_ball,'=',sum_times_moneyball)
