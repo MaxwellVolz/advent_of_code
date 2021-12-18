@@ -3,18 +3,51 @@
 
 f = open("data.txt")
 # f = open("example_data.txt")
-test_data_part_1 = ''.join(f.readlines())
-sonar_scan_data = test_data_part_1.split('\n')
 
-initial_measurement = sonar_scan_data[0]
+test_input = ''.join(f.readlines())
+fish_data = test_input.split(',')
 
-previous_scan = int(initial_measurement)
-deeper_counter = 0
+initial_state = [int(x) for x in fish_data]
 
-for scan in sonar_scan_data[1:]:
-    if previous_scan < int(scan):
-        deeper_counter += 1
 
-    previous_scan = int(scan)
+print(initial_state.count(0))
+print(initial_state.count(1))
 
-print('deeper_counter:', deeper_counter)
+current_state = {
+    0: initial_state.count(0),
+    1: initial_state.count(1),
+    2: initial_state.count(2),
+    3: initial_state.count(3),
+    4: initial_state.count(4),
+    5: initial_state.count(5),
+    6: initial_state.count(6),
+    7: initial_state.count(7),
+    8: initial_state.count(8),
+}
+
+next_state = {}
+
+for _ in range(256):
+    next_state = {
+        0: current_state[1],
+        1: current_state[2],
+        2: current_state[3],
+        3: current_state[4],
+        4: current_state[5],
+        5: current_state[6],
+        6: current_state[7],
+        7: current_state[8],
+        8: current_state[0]
+    }
+
+    if current_state[0] > 0:
+        next_state[6] += current_state[0]
+
+    current_state = next_state
+    next_state = {}
+
+total = 0
+for fish in current_state:
+    total += current_state[fish]
+
+print(total)
