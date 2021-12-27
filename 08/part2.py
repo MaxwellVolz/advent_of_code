@@ -79,6 +79,19 @@ for line in segment_data:
                 else:
                     signal_five = signal
 
+    middle = ''
+    for signal in signal_zero:
+        print(signal, 'in', signal_three)
+        if signal not in signal_three:
+            middle = signal
+
+    # diff 4 and 9, remove top
+
+    # for signal in signal_nine:
+    #     four_plus_top = signal_four + top_signal
+    #     print(signal, 'in', four_plus_top)
+    #     if signal not in four_plus_top:
+    #         bottom = signal
 
     # for signal in output_signal_patterns:
     #     sorted_signal = sorted(signal)
