@@ -2,16 +2,14 @@
 """
 
 # f = open("data.txt")
-# f = open("example_data.txt")
-f = open("example_data2.txt")
+f = open("example_data.txt")
+# f = open("example_data2.txt")
 
 test_input = ''.join(f.readlines())
 segment_data = test_input.split('\n')
 
 occurrences = 0
-
-def signal_must_contain(signals, requirement):
-    temp_signals = []
+output_sum = 0
 
 
 for line in segment_data:
@@ -85,21 +83,26 @@ for line in segment_data:
         if signal not in signal_three:
             middle = signal
 
-    # diff 4 and 9, remove top
+    signal_nine = signal_four + top_signal
 
-    # for signal in signal_nine:
-    #     four_plus_top = signal_four + top_signal
-    #     print(signal, 'in', four_plus_top)
-    #     if signal not in four_plus_top:
-    #         bottom = signal
+    for signal in signal_eight:
+        if signal not in signal_nine:
+            bottom_left = signal
 
-    # for signal in output_signal_patterns:
-    #     sorted_signal = sorted(signal)
-    #     print('signal', signal)
-    #     if sorted_signal == sorted(signal_one) or sorted_signal == sorted(signal_four) or sorted_signal == sorted(signal_seven) or sorted_signal == sorted(signal_eight):
-    #         print('occurrences', occurrences)
-    #         occurrences += 1
+    signal_six = signal_five + bottom_left
 
+    for signal in signal_nine:
+        if signal not in signal_three:
+            top_left = signal
+
+    temp_signal = signal_four + bottom_left + top_signal
+
+    for signal in signal_eight:
+        if signal not in temp_signal:
+            bottom = signal
+
+    signal_zero = top_signal + top_right + top_left + middle + bottom_left + bottom_right + bottom
+    
     print('0:', signal_zero)
     print('1:', signal_one)
     print('2:', signal_two)
@@ -120,6 +123,64 @@ for line in segment_data:
 {bottom_left}     {bottom_right}
  {bottom*4}
     """)
+    
+    output_number = []
+
+    for signal in output_signal_patterns:
+        if set(signal) == set(signal_zero):
+            output_number.append(0)
+
+        if set(signal) == set(signal_one):
+            output_number.append(1)
+        
+        if set(signal) == set(signal_two):
+            output_number.append(2)
+                    
+        if set(signal) == set(signal_three):
+            output_number.append(3)
+                    
+        if set(signal) == set(signal_four):
+            output_number.append(4)
+                    
+        if set(signal) == set(signal_five):
+            output_number.append(5)
+                    
+        if set(signal) == set(signal_six):
+            output_number.append(6)
+                    
+        if set(signal) == set(signal_seven):
+            output_number.append(7)
+                    
+        if set(signal) == set(signal_eight):
+            output_number.append(8)
+                    
+        if set(signal) == set(signal_nine):
+            output_number.append(9)
+
+    print('output_signal_patterns')
+    print(output_signal_patterns)
+
+    output = int("".join([str(integer) for integer in output_number]))
+
+    print(output)
+    output_sum += output
+    # print(int(output_number))
+
+    # for signal in signal_nine:
+    #     four_plus_top = signal_four + top_signal
+    #     print(signal, 'in', four_plus_top)
+    #     if signal not in four_plus_top:
+    #         bottom = signal
+
+    # for signal in output_signal_patterns:
+    #     sorted_signal = sorted(signal)
+    #     print('signal', signal)
+    #     if sorted_signal == sorted(signal_one) or sorted_signal == sorted(signal_four) or sorted_signal == sorted(signal_seven) or sorted_signal == sorted(signal_eight):
+    #         print('occurrences', occurrences)
+    #         occurrences += 1
+
+
+print(output_sum)
 
 # print(occurrences)
 
