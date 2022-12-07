@@ -1,20 +1,25 @@
 """
 """
 
-f = open("data.txt")
-# f = open("example_data.txt")
-test_data_part_1 = ''.join(f.readlines())
-sonar_scan_data = test_data_part_1.split('\n')
+# f = open("data.txt")
+f = open("example_data.txt")
 
-initial_measurement = sonar_scan_data[0]
+test_input = ''.join(f.readlines())
+cleanup_assignments = test_input.split('\n')
 
-previous_scan = int(initial_measurement)
-deeper_counter = 0
+# Tip: use {}.issubset({}) or {}.issuperset({})
 
-for scan in sonar_scan_data[1:]:
-    if previous_scan < int(scan):
-        deeper_counter += 1
+overlapping = 0
+for pairs in cleanup_assignments:
 
-    previous_scan = int(scan)
+    elf_a, elf_b = pairs.split(",")
 
-print('deeper_counter:', deeper_counter)
+    # make sets from ranges to check if one contains other
+    elf_a_areas = set(range(int(elf_a.split("-")[0]), int(elf_a.split("-")[1])+1))
+    elf_b_areas = set(range(int(elf_b.split("-")[0]), int(elf_b.split("-")[1])+1))
+
+    if len(elf_a_areas.intersection(elf_b_areas)) > 0:
+        overlapping += 1
+
+
+print(overlapping)
