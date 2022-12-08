@@ -3,18 +3,22 @@
 
 f = open("data.txt")
 # f = open("example_data.txt")
-test_data_part_1 = ''.join(f.readlines())
-sonar_scan_data = test_data_part_1.split('\n')
 
-initial_measurement = sonar_scan_data[0]
+test_input = ''.join(f.readlines())
 
-previous_scan = int(initial_measurement)
-deeper_counter = 0
+data_stream = list(test_input)
 
-for scan in sonar_scan_data[1:]:
-    if previous_scan < int(scan):
-        deeper_counter += 1
+counter = 14
 
-    previous_scan = int(scan)
+for x in range(len(data_stream)):
 
-print('deeper_counter:', deeper_counter)
+    # print(data_stream[x:x+4])
+    # print(len(set(data_stream[x:x+4])))
+    
+    if len(set(data_stream[x:x+14])) > 13:
+        print(data_stream[x:x+14])
+        break
+
+    counter += 1
+
+print(counter)
