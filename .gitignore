@@ -131,3 +131,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ruff
+.ruff_cache/
+
+# Advent of Code specific
+# Uncomment to keep actual puzzle inputs private
+# data/*_data.yaml
